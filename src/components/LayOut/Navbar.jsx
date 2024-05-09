@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 const Navbar = () => {
   const { user } = useContext(AuthContext);
+  console.log(user)
   return (
     <div>
       <div className="navbar px-3 lg:px-8 py-2 bg-base-100">
@@ -70,16 +71,16 @@ const Navbar = () => {
             </Link>
           )}
           {user && (
-            <div className="dropdown hidden dropdown-end">
+            <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
-                  <img
+                  <img title={user?.displayName}
                     alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                    src={user?.photoURL}
                   />
                 </div>
               </div>
