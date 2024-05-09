@@ -3,7 +3,7 @@ import logo from "../../assets/images/OriginalLogo.png";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   console.log(user)
   return (
     <div>
@@ -88,7 +88,7 @@ const Navbar = () => {
                 tabIndex={0}
                 className="mt-3 z-[10] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-32"
               >
-                <li>
+                <li onClick={logOut}>
                   <a>Logout</a>
                 </li>
               </ul>
