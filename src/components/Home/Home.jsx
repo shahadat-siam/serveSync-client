@@ -1,8 +1,10 @@
+import Carosoul from "../pages/Carosoul";
+
  
 const Home = () => {
     return (
         <div>
-            <h2>This is home</h2>
+            <Carosoul/>
         </div>
     );
 };

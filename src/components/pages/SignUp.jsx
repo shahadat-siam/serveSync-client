@@ -1,15 +1,21 @@
 import swal from 'sweetalert';
 import logo from '../../assets/images/OriginalLogo.png' 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 
 const SignUp = () => {
-  const {signInWithGoogle, user, setUser, createUser, updateUserProfile,} = useContext(AuthContext)
+  const {signInWithGoogle, user, loading, setUser, createUser, updateUserProfile,} = useContext(AuthContext)
 
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state || '/'
+
+  useEffect(() => {
+    if(user){
+      navigate('/')
+    }
+  }, [navigate,user])
 
    // ------ Sign up -----
    const hundleCreateUser = async (e) => {
@@ -20,6 +26,24 @@ const SignUp = () => {
     const password = form.password.value
     const photo = form.photo.value
     console.log(name,email,password,photo)
+    if(password.length < 6) {
+      const error = 'password should be 6 char'
+      return swal({
+        title: "Done",
+        text: `${error}`,
+        icon: "warning",
+        dangerMode: true,
+      }) 
+  }
+  else if(! /^(?=.*[a-z])(?=.*[A-Z]).+$/.test(password)){
+      const error = 'password at least one upper case & lower case latter'
+      return swal({
+        title: "Done",
+        text: `${error}`,
+        icon: "warning",
+        dangerMode: true,
+      }) 
+  }
     try{
       const result = await createUser(email,password)
       console.log(result)
@@ -55,6 +79,8 @@ const SignUp = () => {
         console.log(err)
       } 
   }
+
+  if(user || loading) return
 
   return (
     <div className='flex my-10 justify-center items-center max-w-2xl mx-auto '> 
