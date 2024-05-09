@@ -1,8 +1,63 @@
-import { Link } from "react-router-dom" 
+import { Link, useLocation, useNavigate } from "react-router-dom" 
 import logo from '../../assets/images/OriginalLogo.png'
+import { useContext, useEffect } from "react"
+import { AuthContext } from "../provider/AuthProvider"
+import swal from "sweetalert"
 
 const Login = () => {
+  const {signIn, signInWithGoogle, user, loading} = useContext(AuthContext)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state || '/'
   
+  useEffect(() => {
+    if(user){
+      navigate('/')
+    }
+  }, [navigate,user])
+
+   //---- google sign in -------
+   const hundleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle()
+      swal({
+        title: "Done",
+        text: "You hae successfully logged in",
+        icon: "success",
+        dangerMode: true,
+      })
+      navigate(from, {replace:true})
+    }
+    catch(err) {
+        console.log(err)
+      } 
+  }
+
+  // ------ email password sign in -------
+  const hundleEmailLogin = async (e) => {
+    e.preventDefault()
+    const form = e.target
+    const email = form.email.value
+    const password = form.password.value
+    console.log(email,password)
+    try{
+      const result = await signIn(email,password)
+      console.log(result)
+      navigate(from, {replace:true})
+      swal({
+        title: "Done",
+        text: "You hae successfully logged in",
+        icon: "success",
+        dangerMode: true,
+      })
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+
+  if(user || loading) return
+
   return (
     <div className='flex my-10 justify-center items-center max-w-2xl mx-auto '> 
       <div className='w-full mx-4 border border-gray-200 px-6 py-8 md:px-8 lg:w-1/2'>
@@ -18,7 +73,7 @@ const Login = () => {
             Please Login!
           </p> 
            
-          <form>
+          <form onSubmit={hundleEmailLogin}>
             <div className='mt-4'>
               {/* <label
                 className='block mb-2 text-start text-sm font-medium text-gray-600 '
@@ -71,7 +126,7 @@ const Login = () => {
             </div> 
           </div>
 
-          <div className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
+          <div onClick={hundleGoogleSignIn} className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
             <div className='px-4 py-2'>
               <svg className='w-6 h-6' viewBox='0 0 40 40'>
                 <path
