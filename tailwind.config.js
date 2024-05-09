@@ -1,0 +1,19 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: { 
+      fontFamily: {
+        Sedan : "'Inconsolata',  monospace",
+        // Libre : "'Libre Baskerville',  serif",
+        // Dosis : "'Dosis',  sans-serif", 
+        //  Dancing : "'Dancing Script',  cursive", 
+      }
+    },
+  },
+  plugins: [require("daisyui")],
+}
+
