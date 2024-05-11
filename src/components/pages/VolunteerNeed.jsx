@@ -14,7 +14,7 @@ const VolunteerNeed = () => {
   }, []);
 
   return (
-    <div className="my-6">
+    <div >
       <div>
         <h2 className="text-center font-semibold font-Sedan text-4xl">
           Volunteer Need Now
@@ -36,9 +36,9 @@ const VolunteerNeed = () => {
             <div className="card-body ">
               <h2 className="card-title font-Sedan font-semibold text-2xl">{item.category}</h2>
               <p className="text-start text-gray-500">{item.post_title}</p>
-              <p className="text-start">{new Date(item.deadline).toLocaleDateString()}</p>
+              <p className="text-start">Deadline : {new Date(item.deadline).toLocaleDateString()}</p>
               <div className="card-actions ">
-                <Link to='/view-details'><button className="btn hover:bg-[#03AED2] px-4 text-white bg-[#03AED2]">View Details</button></Link>
+                <Link to={`/view-details/${item._id}`}><button className="btn hover:bg-[#03AED2] px-4 text-white bg-[#03AED2]">View Details</button></Link>
               </div>
             </div>
           </div>

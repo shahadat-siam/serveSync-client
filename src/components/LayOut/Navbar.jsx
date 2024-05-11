@@ -23,7 +23,7 @@ const Navbar = () => {
   // console.log(user);
   return (
     <div>
-      <div className="navbar px-3 lg:px-8 py-2 bg-orange-50">
+      <div className="navbar px-3 shadow-md lg:px-8 py-2 bg-base-100">
         <div className="flex-1">
           <div className="flex items-center ">
             <img src={logo} className="md:w-20 w-14" alt="" />
