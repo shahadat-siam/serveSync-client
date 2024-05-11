@@ -19,7 +19,7 @@ import Slide from './Slide';
 
 export default function Carosoul() {
   return (
-    <div className=' py-8 mx-auto'>
+    <div className=' pb-8 mx-auto'>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

@@ -2,8 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const VolunteerNeed = () => {
-  const [volunteer, setVolunteer] = useState([]);
+const NeedVolunteer = () => {
+
+    const [volunteer, setVolunteer] = useState([]);
   console.log(volunteer);
   useEffect(() => {
     const getData = async () => {
@@ -13,15 +14,11 @@ const VolunteerNeed = () => {
     getData();
   }, []);
 
-  return (
-    <div className="my-6">
-      <div>
-        <h2 className="text-center font-semibold font-Sedan text-4xl">
-          Volunteer Need Now
-        </h2>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 p-8 gap-5 xl:grid-cols-4">
-        {volunteer.slice(0,6).map((item) => (
+    return (
+        <div>
+            <h2 className="text-center font-semibold font-Sedan text-4xl">Need Volunteer Page</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 p-8 gap-5 xl:grid-cols-4">
+        {volunteer.map((item) => (
           <div
             key={item._id}
             className="card card-compact duration-200 hover:shadow-md hover:-translate-y-0.5 p-0 rounded-none border"
@@ -38,17 +35,14 @@ const VolunteerNeed = () => {
               <p className="text-start text-gray-500">{item.post_title}</p>
               <p className="text-start">{new Date(item.deadline).toLocaleDateString()}</p>
               <div className="card-actions ">
-                <Link to='/view-details'><button className="btn hover:bg-[#03AED2] px-4 text-white bg-[#03AED2]">View Details</button></Link>
+              <Link to='/view-details'><button className="btn hover:bg-[#03AED2] px-4 text-white bg-[#03AED2]">View Details</button></Link>
               </div>
             </div>
           </div>
         ))}
       </div>
-      <div className="flex items-center justify-center">
-        <button className="btn btn-ghost bg-[#7ABA78] hover:bg-[#03AED2] text-[#0A6847] font-semibold px-7"> <Link to='/need-volunteer-page'>See All</Link> </button>
-      </div>
-    </div>
-  );
+        </div>
+    );
 };
 
-export default VolunteerNeed;
+export default NeedVolunteer;

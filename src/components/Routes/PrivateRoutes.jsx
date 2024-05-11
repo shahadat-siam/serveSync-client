@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { AuthContext } from "../provider/AuthProvider";
+import { useContext } from "react"; 
 import { Navigate, useLocation } from "react-router-dom";
-import load from '../../../assets/images/Ripple@1x-1.0s-200px-200px.svg'
+import load from '../../assets/images/Ripple@1x-1.0s-200px-200px.svg'
+import { AuthContext } from "../provider/AuthProvider";
 
  
 const PrivateRoutes = ({children}) => {
