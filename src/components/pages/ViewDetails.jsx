@@ -4,8 +4,8 @@ import { Link, useLoaderData } from "react-router-dom";
 const ViewDetails = () => {
     const allPost = useLoaderData()
     console.table(allPost)
-    const {category, deadline, description, postTitle, location, volunteer, OrganizerName, thumbnail, email} = allPost
-
+    const {_id, category, deadline, description, postTitle, location, volunteer, OrganizerName, thumbnail, email} = allPost
+ 
     return (
         <div >
             <h2 className="text-center font-Sedan font-semibold text-4xl py-3">View details </h2>
@@ -25,7 +25,7 @@ const ViewDetails = () => {
                     </div> 
                 </div> 
             </div>
-            <div> <Link to='/be-a-volunteer'> <button className="btn btn-secondary btn-outline">Be a Volunteer</button></Link>  </div>
+            <div> <Link to={`/be-a-volunteer/${_id}`}> <button className="btn btn-secondary btn-outline">Be a Volunteer</button></Link>  </div>
         </div>
     );
 };

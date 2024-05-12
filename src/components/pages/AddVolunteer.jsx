@@ -31,7 +31,7 @@ const AddVolunteer = () => {
             const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/volunteer`, addPost)
             swal({
               title: "Done",
-              text: "successfully updated job data",
+              text: "successfully added data",
               icon: "success",
               dangerMode: true,
             }) 
