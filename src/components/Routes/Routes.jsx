@@ -11,6 +11,7 @@ import ViewDetails from "../pages/ViewDetails";
 import BeAVolunteer from "../pages/BeAVolunteer";
 import MyManagePost from "../pages/MyManagePost";
 import MyNeedPost from "../pages/MyVolunteer/MyNeedPost";
+import Update from "../pages/MyVolunteer/Update";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
         path: '/my-manage-post',
         element: <PrivateRoutes><MyManagePost/></PrivateRoutes>
       }, 
+      {
+        path: '/update',
+        element:  <PrivateRoutes><Update/></PrivateRoutes>,  
+      }
     ],
   },
 ]);

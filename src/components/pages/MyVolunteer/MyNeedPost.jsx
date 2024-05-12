@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import axios from "axios";
+import swal from "sweetalert";
 
 const MyNeedPost = () => {
 
@@ -16,6 +17,28 @@ const MyNeedPost = () => {
       const {data} = await axios(`${import.meta.env.VITE_API_URL}/volunteer/${user?.email}`)
       setData(data)
     }
+
+    const hundleDelete = async (id) => {
+        try{
+          const {data} = await axios.delete(`${import.meta.env.VITE_API_URL}/volunteer/${id}` ) 
+          swal({
+            title: "Done",
+            text: "successfully deleted",
+            icon: "success",
+            dangerMode: true,
+          })
+          getData()
+        }catch(error){
+          console.log(error)
+          swal({
+            title: "Done",
+            text: `${error.message}`,
+            icon: "warning",
+            dangerMode: true,
+          })
+        }
+      }
+    
 
   return (
     <div>
@@ -46,8 +69,10 @@ const MyNeedPost = () => {
                     </td>
                     <td>{new Date(data.deadline).toLocaleDateString()}</td>
                     <th>
-                      <button className="btn btn-ghost btn-xs">Update</button>
-                      <button className="btn btn-ghost btn-xs">Delete</button>
+                        <Link to={`/update`}>
+                            <button  className="btn btn-ghost btn-xs">Update</button>
+                        </Link> 
+                      <button onClick={() => hundleDelete(data._id)} className="btn btn-ghost btn-xs">Delete</button>
                     </th>
                   </tr> )
              }
