@@ -43,7 +43,11 @@ const MyNeedPost = () => {
   return (
     <div>
       <h2 className="font-semibold text-3xl font-Sedan mb-4">My Need Volunteer Post</h2>
-      <div className="overflow-x-auto">
+      {
+        !data.length && <h2 className="font-semibold text-3xl text-center">I Have No Post Yet</h2>
+      }
+       { data.length &&
+        <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
           <thead>
@@ -69,7 +73,7 @@ const MyNeedPost = () => {
                     </td>
                     <td>{new Date(data.deadline).toLocaleDateString()}</td>
                     <th>
-                        <Link to={`/update`}>
+                        <Link to={`/update/${data._id}`}>
                             <button  className="btn btn-ghost btn-xs">Update</button>
                         </Link> 
                       <button onClick={() => hundleDelete(data._id)} className="btn btn-ghost btn-xs">Delete</button>
@@ -78,7 +82,8 @@ const MyNeedPost = () => {
              }
           </tbody> 
         </table>
-      </div>
+        </div>
+       }
     </div>
   );
 };

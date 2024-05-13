@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
-const NeedVolunteer = () => {
-
+const NeedVolunteer = () => { 
     const [volunteer, setVolunteer] = useState([]);
   console.log(volunteer);
   useEffect(() => {
@@ -16,9 +16,9 @@ const NeedVolunteer = () => {
 
     return (
         <div>
-            <h2 className="text-center font-semibold font-Sedan text-4xl">Need Volunteer Page</h2>
+            <h2 className="text-center font-semibold font-Sedan text-4xl">Need Volunteer Page</h2> 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 p-8 gap-5 xl:grid-cols-4">
-        {volunteer.map((item) => (
+        { volunteer.map((item) => (
           <div
             key={item._id}
             className="card card-compact duration-200 hover:shadow-md hover:-translate-y-0.5 p-0 rounded-none border"

@@ -10,11 +10,11 @@ const BeAVolunteer = () => {
     const allPost = useLoaderData()
     // console.table(allPost)
     const {_id, category, deadline, description, postTitle, location, volunteer, OrganizerName, thumbnail, email} = allPost
- 
+    // console.log(allPost)
     const {user} = useContext(AuthContext)
-    // console.log(user)
+    // console.log(user.email)
     const [startDate, setStartDate] = useState(new Date());
-
+     
     const hundleFormSubmit = async (e) => { 
         e.preventDefault() 
         const form = e.target  
@@ -27,9 +27,9 @@ const BeAVolunteer = () => {
         const volunteer = form.volunteer.value
         const volunteerName = form.volunteerName.value
         const thumbnail = form.thumbnail.value
-        const email = form.email.value
+        const email = form.volunteeremail.value
         const status = 'requested'
-
+        // console.log(email)
         const addPost = {
             category, deadline, status, description, postTitle, location, volunteer, volunteerName, thumbnail, email
         } 
@@ -104,8 +104,8 @@ const BeAVolunteer = () => {
                     <input type="text" id="volunteerName" name="volunteerName" defaultValue={user?.displayName} className="p-2 bg-gray-100 rounded border-[1px] outline-none w-full " />
                 </div>
                 <div className="w-full">
-                    <label htmlFor="OrganizerEmail" className="font-Sedan text-lg py-2 font-medium">Volunteer Email</label>
-                    <input type="email" id="OrganizerEmail" name="email" defaultValue={user?.email} className="p-2 bg-gray-100 rounded border-[1px] outline-none w-full " />
+                    <label htmlFor="volunteeremail" className="font-Sedan text-lg py-2 font-medium">Volunteer Email</label>
+                    <input type="email" id="volunteeremail" name="volunteeremail" defaultValue={user.email} className="p-2 bg-gray-100 rounded border-[1px] outline-none w-full " />
                 </div> 
             </div>
 
