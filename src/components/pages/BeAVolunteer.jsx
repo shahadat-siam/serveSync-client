@@ -89,8 +89,6 @@ const BeAVolunteer = () => {
                 <div className='flex flex-col w-full '>
                     <label className=' text-lg font-Sedan font-semibold'>Deadline</label>
                     {new Date(deadline).toLocaleDateString()}
-                    {/* Date Picker Input Field */}
-                    {/* <DatePicker className="border p-2 rounded-md" selected={startDate} onChange={(date) => setStartDate(date)} /> */}
                 </div>
                 <div className="w-full">
                     <label htmlFor="OrganizerName" className="font-Sedan text-lg py-2 font-medium">Organizer name</label>
@@ -101,11 +99,11 @@ const BeAVolunteer = () => {
             <div className="md:flex gap-4">
                 <div className="w-full">
                     <label htmlFor="volunteerName" className="font-Sedan text-lg py-2 font-medium">Volunteer name</label>
-                    <input type="text" id="volunteerName" name="volunteerName" defaultValue={user?.displayName} className="p-2 bg-gray-100 rounded border-[1px] outline-none w-full " />
+                    <input type="text" id="volunteerName" name="volunteerName" disabled defaultValue={user?.displayName} className="p-2 bg-gray-100 rounded border-[1px] outline-none w-full " />
                 </div>
                 <div className="w-full">
                     <label htmlFor="volunteeremail" className="font-Sedan text-lg py-2 font-medium">Volunteer Email</label>
-                    <input type="email" id="volunteeremail" name="volunteeremail" defaultValue={user.email} className="p-2 bg-gray-100 rounded border-[1px] outline-none w-full " />
+                    <input type="email" id="volunteeremail" name="volunteeremail" disabled defaultValue={user.email} className="p-2 bg-gray-100 rounded border-[1px] outline-none w-full " />
                 </div> 
             </div>
 

@@ -3,6 +3,7 @@ import logo from '../../assets/images/OriginalLogo.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
+import axios from 'axios';
 
 const SignUp = () => {
   const {signInWithGoogle, user, loading, setUser, createUser, updateUserProfile,} = useContext(AuthContext)
@@ -48,8 +49,13 @@ const SignUp = () => {
       const result = await createUser(email,password)
       console.log(result)
       await updateUserProfile(name, photo)
-      setUser({...user,photoURL: photo, displayName: name})
-
+      setUser({...result?.user, photoURL: photo, displayName: name})
+      const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+          email : result?.user?.email,
+        },
+        {withCredentials: true}
+      )
+      console.log(data)
       navigate(from, {replace:true})
       swal({
         title: "Done",
@@ -66,7 +72,13 @@ const SignUp = () => {
    //---- google sign in -------
    const hundleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle()
+      const result =  await signInWithGoogle()
+      const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+          email : result?.user?.email,
+        },
+        {withCredentials: true}
+      )
+      console.log(data)
       swal({
         title: "Done",
         text: "You hae successfully logged in",
