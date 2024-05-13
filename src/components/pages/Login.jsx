@@ -1,12 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom" 
 import logo from '../../assets/images/OriginalLogo.png'
-import { useContext, useEffect } from "react"
-import { AuthContext } from "../provider/AuthProvider"
+import { useEffect } from "react" 
 import swal from "sweetalert"
 import axios from "axios"
+import useAuth from "../Hook/useAuth"
 
 const Login = () => {
-  const {signIn, signInWithGoogle, user, loading} = useContext(AuthContext)
+  const {signIn, signInWithGoogle, user, loading} = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state || '/'
@@ -26,7 +26,7 @@ const Login = () => {
         },
         {withCredentials: true}
       )
-      console.log(data)
+      // console.log(data)
       swal({
         title: "Done",
         text: "You hae successfully logged in",
@@ -46,16 +46,16 @@ const Login = () => {
     const form = e.target
     const email = form.email.value
     const password = form.password.value
-    console.log(email,password)
+    // console.log(email,password)
     try{
       const result = await signIn(email,password)
-      console.log(result)
+      // console.log(result)
       const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
           email : result?.user?.email,
         },
         {withCredentials: true}
       )
-      console.log(data)
+      // console.log(data)
       navigate(from, {replace:true})
       swal({
         title: "Done",

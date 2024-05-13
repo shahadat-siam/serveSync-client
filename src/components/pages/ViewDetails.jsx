@@ -5,7 +5,7 @@ const ViewDetails = () => {
     const allPost = useLoaderData()
     console.table(allPost)
     const {_id, category, deadline, description, postTitle, location, volunteer, OrganizerName, thumbnail, email} = allPost
-    console.log(_id)
+    // console.log(_id)
     return (
         <div >
             <h2 className="text-center font-Sedan font-semibold text-4xl py-3">View details </h2>

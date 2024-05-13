@@ -1,12 +1,12 @@
 import swal from 'sweetalert';
 import logo from '../../assets/images/OriginalLogo.png' 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
-import { AuthContext } from '../provider/AuthProvider';
+import { useEffect } from 'react'; 
 import axios from 'axios';
+import useAuth from '../Hook/useAuth';
 
 const SignUp = () => {
-  const {signInWithGoogle, user, loading, setUser, createUser, updateUserProfile,} = useContext(AuthContext)
+  const {signInWithGoogle, user, loading, setUser, createUser, updateUserProfile,} = useAuth()
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -26,7 +26,7 @@ const SignUp = () => {
     const email = form.email.value
     const password = form.password.value
     const photo = form.photo.value
-    console.log(name,email,password,photo)
+    // console.log(name,email,password,photo)
     if(password.length < 6) {
       const error = 'password should be 6 char'
       return swal({
@@ -55,7 +55,7 @@ const SignUp = () => {
         },
         {withCredentials: true}
       )
-      console.log(data)
+      // console.log(data)
       navigate(from, {replace:true})
       swal({
         title: "Done",
@@ -78,7 +78,7 @@ const SignUp = () => {
         },
         {withCredentials: true}
       )
-      console.log(data)
+      // console.log(data)
       swal({
         title: "Done",
         text: "You hae successfully logged in",

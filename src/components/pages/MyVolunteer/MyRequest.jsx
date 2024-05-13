@@ -1,21 +1,23 @@
-import { useContext, useEffect, useState} from "react"; 
-import { AuthContext } from "../../provider/AuthProvider";
+import { useEffect, useState} from "react";  
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAuth from "../../Hook/useAuth";
+import useAxiosSecure from "../../Hook/useAxiosSecure";
   
 
 const MyRequest = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
+  const axiosSecure =useAxiosSecure()
   const [data, setData] = useState([])
 
   useEffect(() => { 
     getData()
   }, [user]);
   const getData = async () => {
-    const {data} = await axios(`${import.meta.env.VITE_API_URL}/beAVolunteermail/${user?.email}`, {withCredentials: true } )
+    const {data} = await axiosSecure(`/beAVolunteermail/${user?.email}`)
     setData(data)
   }
-  console.log(data)
+  // console.log(data)
 
   const hundleDelete = async (id) => {
 
@@ -66,7 +68,8 @@ const MyRequest = () => {
           I Have No Request Post Yet
         </h2>
       )}
-       <div className="overflow-x-auto">
+        { data.length && 
+          <div className="overflow-x-auto">
           <table className="table">
              
             <thead>
@@ -80,7 +83,7 @@ const MyRequest = () => {
             </thead>
 
             <tbody>
-             { data.length && 
+             {  
              data.map(data => <tr key={data._id}>
               <td>
                 <div className="flex items-center gap-3">
@@ -103,6 +106,7 @@ const MyRequest = () => {
             </tbody>
           </table>
         </div>
+        }
     </div>
   );
 };

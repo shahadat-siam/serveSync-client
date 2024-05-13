@@ -1,26 +1,27 @@
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../provider/AuthProvider";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; 
 import axios from "axios";
 import swal from "sweetalert";
+import useAuth from "../../Hook/useAuth";
+import useAxiosSecure from "../../Hook/useAxiosSecure";
 
 const MyNeedPost = () => {
-
-    const {user} = useContext(AuthContext)
+    const axiosSecure = useAxiosSecure()
+    const {user} = useAuth()
     const [data, setData] = useState([])
-    console.log(data)
+    // console.log(data)
     
     useEffect(() => { 
       getData()
     }, [user]);
     const getData = async () => {
-      const {data} = await axios(`${import.meta.env.VITE_API_URL}/volunteer/${user?.email}`, {withCredentials: true } )
+      const {data} = await axiosSecure(`/volunteer/${user?.email}`)
       setData(data)
     }
 
     const hundleDelete = async (id) => {
         try{
-          const {data} = await axios.delete(`${import.meta.env.VITE_API_URL}/volunteer/${id}` ) 
+          const {data} = await axiosSecure.delete(`/volunteer/${id}`) 
           swal({
             title: "Done",
             text: "successfully deleted",

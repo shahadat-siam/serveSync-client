@@ -1,17 +1,18 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; 
 import axios from "axios";
-import swal from "sweetalert";
-import { AuthContext } from "../provider/AuthProvider";
-import { useLoaderData } from "react-router-dom";
+import swal from "sweetalert"; 
+import { useLoaderData, useNavigate } from "react-router-dom";
+import useAuth from "../Hook/useAuth";
 
 const BeAVolunteer = () => {
     const allPost = useLoaderData()
+    const navigate = useNavigate()
     // console.table(allPost)
     const {_id, category, deadline, description, postTitle, location, volunteer, OrganizerName, thumbnail, email} = allPost
     // console.log(allPost)
-    const {user} = useContext(AuthContext)
+    const {user} = useAuth()
     // console.log(user.email)
     const [startDate, setStartDate] = useState(new Date());
      
@@ -42,6 +43,7 @@ const BeAVolunteer = () => {
               icon: "success",
               dangerMode: true,
             }) 
+            navigate('/my-manage-post')
           }catch(error){
             console.log(error)
             swal({

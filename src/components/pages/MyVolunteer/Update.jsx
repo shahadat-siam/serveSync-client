@@ -1,14 +1,17 @@
-import { useContext, useState } from "react";
-import DatePicker from "react-datepicker";
-import { AuthContext } from "../../provider/AuthProvider";
+import { useState } from "react";
+import DatePicker from "react-datepicker"; 
 import "react-datepicker/dist/react-datepicker.css";   
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "axios";
+import useAuth from "../../Hook/useAuth";
+import useAxiosSecure from "../../Hook/useAxiosSecure";
  
 const Update = () => { 
     const data = useLoaderData() 
-    const {user} = useContext(AuthContext)
+    const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
+    const {user} = useAuth()
     const [startDate, setStartDate] = useState(new Date()); 
 
     const {_id, category, deadline, description, postTitle, location, volunteer, OrganizerName, thumbnail, email} = data
@@ -31,15 +34,16 @@ const Update = () => {
         const updatePost = {
             category, deadline, description, postTitle, location, volunteer, OrganizerName, thumbnail, email
         } 
-        console.log(updatePost)
+        // console.log(updatePost)
         try{
-            const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/volunteer/${_id}`, updatePost)
+            const {data} = await axiosSecure.put(`/volunteer/${_id}`, updatePost)
             swal({
               title: "Done",
               text: "successfully updated post data",
               icon: "success",
               dangerMode: true,
             }) 
+            navigate('/my-manage-post')
           }catch(error){
             console.log(error)
             swal({
@@ -66,7 +70,7 @@ const Update = () => {
                         <option value='Healthcare'>Healthcare</option>
                         <option value='Education'>Education</option>
                         <option value='Social Service'>Social Service</option>
-                        <option value='>Animal Welfare'>Animal Welfare</option>
+                        <option value='Animal Welfare'>Animal Welfare</option>
                     </select>
                 </div>
                 <div className="w-full">

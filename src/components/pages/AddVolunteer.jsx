@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; 
 import axios from "axios";
-import swal from "sweetalert";
-import { AuthContext } from "../provider/AuthProvider";
+import swal from "sweetalert"; 
+import useAuth from "../Hook/useAuth";
 
 const AddVolunteer = () => {
-    const {user} = useContext(AuthContext)
+    const {user} = useAuth()
     const [startDate, setStartDate] = useState(new Date());
 
     const hundleFormSubmit = async (e) => { 
@@ -63,7 +63,7 @@ const AddVolunteer = () => {
                         <option value='Healthcare'>Healthcare</option>
                         <option value='Education'>Education</option>
                         <option value='Social Service'>Social Service</option>
-                        <option value='>Animal Welfare'>Animal Welfare</option>
+                        <option value='Animal Welfare'>Animal Welfare</option>
                     </select>
                 </div>
                 <div className="w-full">

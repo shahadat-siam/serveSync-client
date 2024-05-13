@@ -6,7 +6,7 @@ import MyRequest from "./MyVolunteer/MyRequest";
 const MyManagePost = () => {
   return (
     <div className="p-5">
-      <h1 className="text-4xl font-semibold text-center">My Manage Post</h1>
+      <h1 className="text-4xl font-semibold text-center">Manage My Post</h1>
       <Tabs className="my-6">
         <div className="flex justify-center">
           <TabList>
