@@ -12,7 +12,7 @@ const MyRequest = () => {
     getData()
   }, [user]);
   const getData = async () => {
-    const {data} = await axios(`${import.meta.env.VITE_API_URL}/beAVolunteermail/${user?.email}`)
+    const {data} = await axios(`${import.meta.env.VITE_API_URL}/beAVolunteermail/${user?.email}`, {withCredentials: true } )
     setData(data)
   }
   console.log(data)
