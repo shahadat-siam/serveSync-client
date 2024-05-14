@@ -45,7 +45,7 @@ const VolunteerNeed = () => {
         ))}
       </div>
       <div className="flex items-center justify-center">
-        <button className="btn btn-ghost bg-[#7ABA78] hover:bg-[#03AED2] text-[#0A6847] font-semibold px-7"> <Link to='/need-volunteer-page'>See All</Link> </button>
+        <button className="btn btn-ghost bg-[#53768a] hover:bg-[#03AED2] text-[#d4ddda] font-semibold px-16"> <Link to='/need-volunteer-page'>See All</Link> </button>
       </div>
     </div>
   );
