@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; 
 import axios from "axios";
@@ -7,6 +7,16 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
 
 const BeAVolunteer = () => {
+    const [volunteerNeed, setVolunteerNeed] = useState([]); 
+    useEffect(() => {
+      const getData = async () => {
+        const { data } = await axios(`${import.meta.env.VITE_API_URL}/volunteer`);
+        setVolunteerNeed(data);
+      };
+      getData();
+    }, []);
+    const length = volunteerNeed.length 
+
     const allPost = useLoaderData()
     const navigate = useNavigate()
     // console.table(allPost)
@@ -54,6 +64,10 @@ const BeAVolunteer = () => {
             })
           }
 
+      }
+
+      if(!length){
+        return <p className="text-3xl text-warning mt-10 text-center font-semibold"> Now don't need volunteer</p>
       }
 
     return (

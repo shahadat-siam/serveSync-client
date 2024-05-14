@@ -1,7 +1,11 @@
+ 
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
  
-const ViewDetails = () => {
+const ViewDetails = () => { 
+
     const allPost = useLoaderData()
     console.table(allPost)
     const {_id, category, deadline, description, postTitle, location, volunteer, OrganizerName, thumbnail, email} = allPost
@@ -24,8 +28,9 @@ const ViewDetails = () => {
                         <p className="max-w-[400px]"> <span className="font-bold">Description:</span> {description}</p>
                     </div> 
                 </div> 
-            </div>
-            <div> <Link to={`/be-a-volunteer/${_id}`}> <button className="btn btn-secondary btn-outline">Be a Volunteer</button></Link>  </div>
+            </div> 
+             <div> <Link to={`/be-a-volunteer/${_id}`}> <button className="btn btn-secondary btn-outline">Be a Volunteer</button></Link>  </div>
+             
         </div>
     );
 };
