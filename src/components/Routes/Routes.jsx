@@ -11,6 +11,9 @@ import ViewDetails from "../pages/ViewDetails";
 import BeAVolunteer from "../pages/BeAVolunteer";
 import MyManagePost from "../pages/MyManagePost"; 
 import Update from "../pages/MyVolunteer/Update";
+import DashBoard from "../Root/DashBoard";
+import Statistics from "../DashBoard/Statistics";
+import ManageUsers from "../DashBoard/AdminMenu/ManageUsers";
 
 const router = createBrowserRouter([
   {
@@ -60,5 +63,19 @@ const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path: '/dashboard',
+    element: <DashBoard/>,
+    children: [
+      {
+        index: true,
+        element: <Statistics/>
+      },
+      {
+        path:'manage-users',
+        element: <ManageUsers/>
+      }
+    ]
+  }
 ]);
 export default router;

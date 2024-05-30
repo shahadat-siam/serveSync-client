@@ -21,43 +21,43 @@ const MyRequest = () => {
 
   const hundleDelete = async (id) => {
 
-    try{
-      const {data} = await axios.delete(`${import.meta.env.VITE_API_URL}/beAVolunteer/${id}` ) 
-      Swal.fire({
-        title: "Canceled!",
-        text: "Your request has been canceled.",
-        icon: "success"
-      });
-      getData()
-    }
-    catch(error){
-      console.log(error) 
-    } 
+    // try{
+    //   const {data} = await axios.delete(`${import.meta.env.VITE_API_URL}/beAVolunteer/${id}` ) 
+    //   Swal.fire({
+    //     title: "Canceled!",
+    //     text: "Your request has been canceled.",
+    //     icon: "success"
+    //   });
+    //   getData()
+    // }
+    // catch(error){
+    //   console.log(error) 
+    // } 
 
-    // Swal.fire({
-    //   title: "Are you sure want to cancel?",
-    //   text: "Before cancel confirm cancellation ",
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Yes, cancel!"
-    // }).then((result) => {
-    //   if (result.isConfirmed) {  
-    //     try{
-    //       const {data} = await axios.delete(`${import.meta.env.VITE_API_URL}/beAVolunteer/${id}` ) 
-    //       Swal.fire({
-    //         title: "Deleted!",
-    //         text: "Your file has been deleted.",
-    //         icon: "success"
-    //       });
-    //       getData()
-    //     }
-    //     catch(error){
-    //       console.log(error) 
-    //     } 
-    //   }
-    //   }) 
+    Swal.fire({
+      title: "Are you sure want to cancel?",
+      text: "Before cancel confirm cancellation ",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, cancel!"
+    }).then( async (result) => {
+      if (result.isConfirmed) {  
+        try{
+          const {data} = await axios.delete(`${import.meta.env.VITE_API_URL}/beAVolunteer/${id}` ) 
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+          getData()
+        }
+        catch(error){
+          console.log(error) 
+        } 
+      }
+      }) 
   }
  
   return (

@@ -175,6 +175,9 @@ const Navbar = () => {
                 <li onClick={logOut}>
                   <a>Logout</a>
                 </li>
+                <li>
+                   <Link to='/dashboard' ><a>DashBoard</a></Link>
+                </li>
               </ul>
             </div>
           )}
